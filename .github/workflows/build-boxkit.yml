@@ -6,8 +6,6 @@ on:
   schedule:
     - cron: '0 0 * * TUE'
   push:
-    branches:
-      - main
     paths-ignore:
       - '**/README.md'
 env:
