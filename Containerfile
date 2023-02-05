@@ -6,10 +6,13 @@ LABEL com.github.containers.toolbox="true" \
       maintainer="jorge.castro@gmail.com>"
 
 COPY extra-packages /
+COPY lazy.sh /lazy.sh
+
 RUN apk update && \
     apk upgrade && \
-    cat /extra-packages | xargs apk add
-RUN rm /extra-packages
+    cat /extra-packages | xargs apk add && \
+    ./lazy.sh
+RUN rm /extra-packages /lazy.sh
 
 RUN   ln -fs /bin/sh /usr/bin/sh && \
       ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
